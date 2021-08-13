@@ -90,6 +90,12 @@ function reproduce() {
     requestAnimationFrame(animate);
 }
 
+function handleInput(x, y) {
+    const xsq = Math.floor(x / res);
+    const ysq = Math.floor(y / res);
+    grid[xsq][ysq] = 1;
+}
+
 // slows framerate
 let frame = 0;
 let frameLimit = 3;

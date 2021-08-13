@@ -6,6 +6,7 @@ const startButton = document.getElementById('start-button');
 startMenu.classList.remove('hidden');
 startButton.onclick = () => {
     startMenu.classList.add('hidden');
+    startCapturingInput();
     setup();
 };
 
