@@ -1,4 +1,4 @@
-const res = 10;
+let res = 10;
 let grid, cols, rows, colours;
 
 // creates 2d 0 array
@@ -11,6 +11,7 @@ function makeArray(cols, rows) {
 }
 
 function setup() {
+    res = getResolution();
     cols = Math.floor(canvas.width / res);
     rows = Math.floor(canvas.height / res);
     grid = makeArray(cols, rows);
@@ -26,6 +27,21 @@ function setup() {
     draw()
 }
 
+function getColour(x, y) {
+    var colour = colours[x][y];
+    var r = 0, g = 0, b = 0;
+    if (colour < 100) r = colour;
+    else if (colour > 200) {
+        r = 100;
+        g = 100;
+        b = colour - 200;
+    } else {
+        r = 100;
+        g = colour - 100;
+    }
+    return [r, g, b];
+}
+
 function draw() {
     ctx.clearRect(0, 0, canvas.width, canvas.height);
 
@@ -34,17 +50,7 @@ function draw() {
             var x = i * res;
             var y = j * res;
             if (grid[i][j] == 1) {
-                var colour = colours[i][j];
-                var r, g, b = 0;
-                if (colour < 100) r = colour;
-                else if (colour > 200) {
-                    r = 100;
-                    g = 100;
-                    b = colour - 200;
-                } else {
-                    r = 100;
-                    g = colour - 100;
-                }
+                var [r, g, b] = getColour(i, j);
                 //ctx.fillStyle = "Black";
                 ctx.fillStyle = "rgb(" + r + "," + g + "," + b + ")";
                 ctx.fillRect(x, y, res - 1, res - 1);
@@ -52,8 +58,9 @@ function draw() {
         }
     }
 
-    reproduce()
+    reproduce();
 
+    requestAnimationFrame(animate);
 }
 
 function sumOfNeighbours(x, y) {
@@ -82,18 +89,16 @@ function reproduce() {
             else {
                 nextGeneration[i][j] = 0;
                 colours[i][j] = 0;
-
             }
         }
     }
     grid = nextGeneration;
-    requestAnimationFrame(animate);
 }
 
 function handleInput(x, y) {
     const xsq = Math.floor(x / res);
     const ysq = Math.floor(y / res);
-    grid[xsq][ysq] = 1;
+    grid[xsq][ysq] == 0 ? grid[xsq][ysq] = 1 : grid[xsq][ysq] = 0;
 }
 
 // slows framerate

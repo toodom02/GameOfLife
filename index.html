@@ -2,7 +2,7 @@
 <html>
 
 <head>
-  <title>Cellular Automata</title>
+  <title>Game of Life</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
 
   <!-- Favicon -->
@@ -17,18 +17,49 @@
   <meta name="theme-color" content="#ffffff">
 
   <link rel="stylesheet" href="src/static/main.css">
+  <!-- MDB -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/mdb-ui-kit/3.6.0/mdb.min.css" />
+
+  <!-- Bootstrap -->
   <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
     integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+
 </head>
 
 <body>
 
   <canvas id="game-canvas"></canvas>
+
   <div id="start-menu" class="hidden">
     <h1>Conway's Game of Life</h1>
+
     <p>
       Click to start the automata
+
     </p>
+
+    <a data-toggle="collapse" href="#options" aria-expanded="false" aria-controls="options">
+      options
+    </a>
+
+    <div class="collapse" id="options">
+      <hr />
+      <div class="form-check form-switch">
+        <input class="form-check-input" type="checkbox" id="user-input" checked />
+        <label class="form-check-label" for="user-input">User Input</label>
+      </div>
+      <br />
+      <label class="form-label" for="res-input">Resolution</label>
+      <div class="range">
+        <input type="range" class="form-range" min="0" max="45" id="res-input" value="40" />
+      </div>
+
+      <br />
+      See the source code on <a href="https://github.com/toodom02/GameOfLife" target="_blank">Github</a>.
+    </div>
+
+    <br />
+
     <button id="start-button" class="btn btn-outline-dark">START</button>
   </div>
 
