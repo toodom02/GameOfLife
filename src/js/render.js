@@ -58,7 +58,7 @@ function draw() {
         }
     }
 
-    reproduce();
+    if (!isPaused()) reproduce();
 
     requestAnimationFrame(animate);
 }
@@ -105,6 +105,7 @@ function handleInput(x, y) {
 let frame = 0;
 let frameLimit = 3;
 function animate() {
+    frameLimit = getFramerate();
     frame++
     if (frame % frameLimit == 0) draw();
     else requestAnimationFrame(animate);

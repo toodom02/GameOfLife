@@ -14,3 +14,10 @@ function startCapturingInput() {
     window.addEventListener('touchstart', onTouchInput);
     window.addEventListener('touchmove', onTouchInput);
 }
+
+function stopCapturingInput() {
+    window.removeEventListener('mousemove', onMouseInput);
+    window.removeEventListener('click', onMouseInput);
+    window.removeEventListener('touchstart', onTouchInput);
+    window.removeEventListener('touchmove', onTouchInput);
+}

@@ -17,12 +17,10 @@
   <meta name="theme-color" content="#ffffff">
 
   <link rel="stylesheet" href="src/static/main.css">
-  <!-- MDB -->
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/mdb-ui-kit/3.6.0/mdb.min.css" />
 
   <!-- Bootstrap -->
-  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
-    integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.0/dist/css/bootstrap.min.css"
+    integrity="sha384-B0vP5xmATw1+K9KRQjQERJvTumQW0nPEzvF6L/Z6nronJ3oUOFUFpCjEUQouq2+l" crossorigin="anonymous">
 
 </head>
 
@@ -39,19 +37,20 @@
     </p>
 
     <a data-toggle="collapse" href="#options" aria-expanded="false" aria-controls="options">
-      options
+      <!-- icon licensed under the Creative Commons Attribution 4.0 from fontawesome https://fontawesome.com/license -->
+      <img src="src/static/cog-solid.svg" height="20" width="20"></img>
     </a>
 
     <div class="collapse" id="options">
       <hr />
-      <div class="form-check form-switch">
-        <input class="form-check-input" type="checkbox" id="user-input" checked />
-        <label class="form-check-label" for="user-input">User Input</label>
+      <div class="custom-control custom-switch">
+        <input type="checkbox" class="custom-control-input" id="user-input">
+        <label class="custom-control-label" for="user-input">User Input</label>
       </div>
       <br />
       <label class="form-label" for="res-input">Resolution</label>
       <div class="range">
-        <input type="range" class="form-range" min="0" max="45" id="res-input" value="40" />
+        <input type="range" class="form-control-range" min="0" max="45" id="res-input" value="40" />
       </div>
 
       <br />
@@ -63,14 +62,44 @@
     <button id="start-button" class="btn btn-outline-dark">START</button>
   </div>
 
-  <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"
-    integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo"
+  <a type="button" id="settings-button" class="hidden">
+    <!-- icon licensed under the Creative Commons Attribution 4.0 from fontawesome https://fontawesome.com/license -->
+    <img src="src/static/cog-solid.svg" height="20" width="20"></img>
+  </a>
+
+  <div id="settings-menu" class="hidden">
+
+    <a type="button" id="play-pause">
+      <!-- icons licensed under the Creative Commons Attribution 4.0 from fontawesome https://fontawesome.com/license -->
+      <img src="src/static/pause-solid.svg" height="20" width="20" id="pause-icon"></img>
+      <img src="src/static/play-solid.svg" height="20" width="20" id="play-icon" class="hidden"></img>
+    </a>
+
+    <hr />
+
+    <div class="custom-control custom-switch">
+      <input type="checkbox" class="custom-control-input" id="user-input2">
+      <label class="custom-control-label" for="user-input2">User Input</label>
+    </div>
+
+    <hr />
+
+    <label class="form-label" for="res-input">Framerate</label>
+    <div class="range">
+      <input type="range" class="form-range" min="0" max="19" id="rate-input" value="17" />
+    </div>
+
+    <hr />
+
+    <button id="clear-button" class="btn btn-outline-dark btn-sm">CLEAR</button>
+
+  </div>
+
+  <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"
+    integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj"
     crossorigin="anonymous"></script>
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"
-    integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1"
-    crossorigin="anonymous"></script>
-  <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"
-    integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM"
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.6.0/dist/js/bootstrap.bundle.min.js"
+    integrity="sha384-Piv4xVNRyMGpqkS2by6br4gNJ7DXjqk09RmUpJ8jgGtD7zP9yug3goQfGII0yAns"
     crossorigin="anonymous"></script>
 
 </body>
