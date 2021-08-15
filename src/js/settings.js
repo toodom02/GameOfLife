@@ -49,7 +49,7 @@ function pauseClicked() {
 
 function nextClicked() {
     reproduce();
-    draw();
+    draw(false);
 }
 
 clearButton.onclick = () => {
@@ -65,6 +65,8 @@ exitButton.onclick = () => {
     settingsButton.classList.add('hidden');
     startMenu.classList.remove('hidden');
     pauseButton.checked = false;
+    pauseIcon.classList.remove('hidden');
+    playIcon.classList.add('hidden');
 }
 
 function getFramerate() {

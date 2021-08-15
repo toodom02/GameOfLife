@@ -42,7 +42,7 @@ function getColour(x, y) {
     return [r, g, b];
 }
 
-function draw() {
+function draw(request = true) {
     ctx.clearRect(0, 0, canvas.width, canvas.height);
 
     for (let i = 0; i < cols; i++) {
@@ -59,8 +59,7 @@ function draw() {
     }
 
     if (!isPaused()) reproduce();
-
-    requestAnimationFrame(animate);
+    if (request) requestAnimationFrame(animate);
 }
 
 function sumOfNeighbours(x, y) {
@@ -106,4 +105,3 @@ function animate() {
         else requestAnimationFrame(animate);
     }
 }
-
