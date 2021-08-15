@@ -1,4 +1,9 @@
-// handle input in render.js
+function handleInput(x, y) {
+    const xsq = Math.floor(x / res);
+    const ysq = Math.floor(y / res);
+    grid[xsq][ysq] == 0 ? grid[xsq][ysq] = 1 : grid[xsq][ysq] = 0;
+}
+
 function onMouseInput(e) {
     handleInput(e.clientX, e.clientY);
 }

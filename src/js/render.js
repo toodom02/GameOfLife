@@ -4,7 +4,7 @@ let grid, cols, rows, colours;
 // creates 2d 0 array
 function makeArray(cols, rows) {
     const x = new Array(cols);
-    for (var i = 0; i < x.length; i++) {
+    for (let i = 0; i < x.length; i++) {
         x[i] = new Array(rows).fill(0);
     }
     return x
@@ -18,8 +18,8 @@ function setup() {
     colours = makeArray(cols, rows);
 
     // randomly set grid
-    for (var i = 0; i < cols; i++) {
-        for (var j = 0; j < rows; j++) {
+    for (let i = 0; i < cols; i++) {
+        for (let j = 0; j < rows; j++) {
             if (Math.random() < 0.5 ? 0 : 1 == 1) grid[i][j] = 1;
         }
     }
@@ -28,8 +28,8 @@ function setup() {
 }
 
 function getColour(x, y) {
-    var colour = colours[x][y];
-    var r = 0, g = 0, b = 0;
+    let colour = colours[x][y];
+    let r = 0, g = 0, b = 0;
     if (colour < 100) r = colour;
     else if (colour > 200) {
         r = 100;
@@ -45,12 +45,12 @@ function getColour(x, y) {
 function draw() {
     ctx.clearRect(0, 0, canvas.width, canvas.height);
 
-    for (var i = 0; i < cols; i++) {
-        for (var j = 0; j < rows; j++) {
-            var x = i * res;
-            var y = j * res;
+    for (let i = 0; i < cols; i++) {
+        for (let j = 0; j < rows; j++) {
+            let x = i * res;
+            let y = j * res;
             if (grid[i][j] == 1) {
-                var [r, g, b] = getColour(i, j);
+                let [r, g, b] = getColour(i, j);
                 //ctx.fillStyle = "Black";
                 ctx.fillStyle = "rgb(" + r + "," + g + "," + b + ")";
                 ctx.fillRect(x, y, res - 1, res - 1);
@@ -65,8 +65,8 @@ function draw() {
 
 function sumOfNeighbours(x, y) {
     let sum = 0
-    for (var i = - 1; i < 2; i++) {
-        for (var j = - 1; j < 2; j++) sum += grid[(x + i + cols) % cols][(y + j + rows) % rows];
+    for (let i = - 1; i < 2; i++) {
+        for (let j = - 1; j < 2; j++) sum += grid[(x + i + cols) % cols][(y + j + rows) % rows];
     }
     sum -= grid[x][y];
     return sum;
@@ -74,13 +74,13 @@ function sumOfNeighbours(x, y) {
 
 
 function reproduce() {
-    var nextGeneration = makeArray(cols, rows);
-    for (var i = 0; i < cols; i++) {
-        for (var j = 0; j < rows; j++) {
-            var neighbours = sumOfNeighbours(i, j);
+    let nextGeneration = makeArray(cols, rows);
+    for (let i = 0; i < cols; i++) {
+        for (let j = 0; j < rows; j++) {
+            let neighbours = sumOfNeighbours(i, j);
             if (grid[i][j] == 1 && (neighbours == 2 || neighbours == 3)) {
                 nextGeneration[i][j] = 1;
-                colours[i][j] = (colours[i][j] + 1) % 300;
+                colours[i][j] = (colours[i][j] + 1) % 455;
             }
             else if (grid[i][j] == 0 && neighbours == 3) {
                 nextGeneration[i][j] = 1;
@@ -95,19 +95,15 @@ function reproduce() {
     grid = nextGeneration;
 }
 
-function handleInput(x, y) {
-    const xsq = Math.floor(x / res);
-    const ysq = Math.floor(y / res);
-    grid[xsq][ysq] == 0 ? grid[xsq][ysq] = 1 : grid[xsq][ysq] = 0;
-}
-
 // slows framerate
 let frame = 0;
 let frameLimit = 3;
 function animate() {
-    frameLimit = getFramerate();
-    frame++
-    if (frame % frameLimit == 0) draw();
-    else requestAnimationFrame(animate);
+    if (started) {
+        frameLimit = getFramerate();
+        frame++
+        if (frame % frameLimit == 0) draw();
+        else requestAnimationFrame(animate);
+    }
 }
 
